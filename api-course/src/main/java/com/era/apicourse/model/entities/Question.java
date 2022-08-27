@@ -1,4 +1,4 @@
-package com.era.courseapi.model.entities;
+package com.era.apicourse.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

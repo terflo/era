@@ -1,9 +1,9 @@
-package com.era.courseapi.model.services.interfaces;
+package com.era.apicourse.model.services.interfaces;
 
-import com.era.courseapi.exceptions.CourseAlreadyExistsException;
-import com.era.courseapi.exceptions.CourseNotFoundException;
-import com.era.courseapi.model.entities.Course;
-import com.era.courseapi.model.requests.NewCourseRequest;
+import com.era.apicourse.exceptions.CourseAlreadyExistsException;
+import com.era.apicourse.exceptions.CourseNotFoundException;
+import com.era.apicourse.model.entities.Course;
+import com.era.apicourse.model.requests.NewCourseRequest;
 
 import java.util.List;
 

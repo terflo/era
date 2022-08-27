@@ -1,0 +1,40 @@
+server:
+  port: 8082
+  address: 127.0.0.1
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+spring:
+  application:
+    name: configServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: git@github.com:terflo/era-config.git
+          default-label: main
+          ignore-local-ssh-settings: true
+          search-paths: {application}
+          clone-on-start: true
+          private-key: |
+                        -----BEGIN EC PRIVATE KEY-----
+                        MHcCAQEEIHMzH3dcGHvCs8+PczP5TiQXk8MqugBK1xaGhaIoChv+oAoGCCqGSM49
+                        AwEHoUQDQgAEyTf7Qx4EaCLAbJeSc8OQHtJfH+5qKmQ/0avvKvLOV0htdmUMS6oQ
+                        JTKg7Yrxw1j/+BdSxl5HyMGTQtWUA1hyiQ==
+                        -----END EC PRIVATE KEY-----
+
+
+
+
+
+
+
+
+
+
+
+
+

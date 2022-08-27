@@ -1,4 +1,4 @@
-package com.era.courseapi.exceptions;
+package com.era.apicourse.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

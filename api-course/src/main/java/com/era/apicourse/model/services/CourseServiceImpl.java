@@ -1,12 +1,13 @@
-package com.era.courseapi.model.services;
+package com.era.apicourse.model.services;
 
-import com.era.courseapi.exceptions.CourseAlreadyExistsException;
-import com.era.courseapi.exceptions.CourseNotFoundException;
-import com.era.courseapi.model.entities.Course;
-import com.era.courseapi.model.repositories.CourseRepository;
-import com.era.courseapi.model.requests.NewCourseRequest;
-import com.era.courseapi.model.services.interfaces.CourseService;
+import com.era.apicourse.exceptions.CourseAlreadyExistsException;
+import com.era.apicourse.exceptions.CourseNotFoundException;
+import com.era.apicourse.model.entities.Course;
+import com.era.apicourse.model.repositories.CourseRepository;
+import com.era.apicourse.model.requests.NewCourseRequest;
+import com.era.apicourse.model.services.interfaces.CourseService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

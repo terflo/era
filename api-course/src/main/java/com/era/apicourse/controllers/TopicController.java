@@ -1,16 +1,12 @@
-package com.era.courseapi.controllers;
+package com.era.apicourse.controllers;
 
-import com.era.courseapi.model.entities.Course;
-import com.era.courseapi.model.entities.Topic;
-import com.era.courseapi.model.requests.NewTopicRequest;
-import com.era.courseapi.model.services.interfaces.CourseService;
-import com.era.courseapi.model.services.interfaces.TopicService;
+import com.era.apicourse.model.entities.Topic;
+import com.era.apicourse.model.requests.NewTopicRequest;
+import com.era.apicourse.model.services.interfaces.CourseService;
+import com.era.apicourse.model.services.interfaces.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

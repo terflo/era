@@ -1,4 +1,4 @@
-package com.era.courseapi.model.entities;
+package com.era.apicourse.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.era.courseapi.model.requests;
+package com.era.apicourse.model.requests;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

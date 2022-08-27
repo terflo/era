@@ -1,6 +1,6 @@
-package com.era.courseapi.model.repositories;
+package com.era.apicourse.model.repositories;
 
-import com.era.courseapi.model.entities.Exam;
+import com.era.apicourse.model.entities.Exam;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

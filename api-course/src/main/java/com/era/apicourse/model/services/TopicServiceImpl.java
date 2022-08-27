@@ -1,11 +1,11 @@
-package com.era.courseapi.model.services;
+package com.era.apicourse.model.services;
 
-import com.era.courseapi.exceptions.TopicNotFoundException;
-import com.era.courseapi.model.entities.Course;
-import com.era.courseapi.model.entities.Topic;
-import com.era.courseapi.model.repositories.TopicRepository;
-import com.era.courseapi.model.requests.NewTopicRequest;
-import com.era.courseapi.model.services.interfaces.TopicService;
+import com.era.apicourse.exceptions.TopicNotFoundException;
+import com.era.apicourse.model.entities.Course;
+import com.era.apicourse.model.entities.Topic;
+import com.era.apicourse.model.repositories.TopicRepository;
+import com.era.apicourse.model.requests.NewTopicRequest;
+import com.era.apicourse.model.services.interfaces.TopicService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

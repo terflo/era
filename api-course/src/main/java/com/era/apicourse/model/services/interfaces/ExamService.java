@@ -1,4 +1,4 @@
-package com.era.courseapi.model.services.interfaces;
+package com.era.apicourse.model.services.interfaces;
 
 public interface ExamService {
 

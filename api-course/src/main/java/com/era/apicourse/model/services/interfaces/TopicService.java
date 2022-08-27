@@ -1,9 +1,9 @@
-package com.era.courseapi.model.services.interfaces;
+package com.era.apicourse.model.services.interfaces;
 
-import com.era.courseapi.exceptions.TopicNotFoundException;
-import com.era.courseapi.model.entities.Course;
-import com.era.courseapi.model.entities.Topic;
-import com.era.courseapi.model.requests.NewTopicRequest;
+import com.era.apicourse.exceptions.TopicNotFoundException;
+import com.era.apicourse.model.entities.Course;
+import com.era.apicourse.model.entities.Topic;
+import com.era.apicourse.model.requests.NewTopicRequest;
 
 import java.util.List;
 
