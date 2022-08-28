@@ -7,7 +7,6 @@ import com.era.apicourse.model.repositories.CourseRepository;
 import com.era.apicourse.model.requests.NewCourseRequest;
 import com.era.apicourse.model.services.interfaces.CourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;

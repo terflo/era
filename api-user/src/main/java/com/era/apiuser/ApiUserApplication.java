@@ -1,4 +1,4 @@
-package com.era.apicourse;
+package com.era.apiuser;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class ApiCourseApplication {
+public class ApiUserApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ApiCourseApplication.class, args);
+        SpringApplication.run(ApiUserApplication.class, args);
     }
 
 }

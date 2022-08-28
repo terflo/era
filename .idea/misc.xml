@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/api-course/pom.xml" />
         <option value="$PROJECT_DIR$/eurika-server/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/gateway-server/pom.xml" />
+        <option value="$PROJECT_DIR$/api-user/pom.xml" />
       </list>
     </option>
   </component>

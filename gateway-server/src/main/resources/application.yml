@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eurekaServer
+    name: gatewayServer
   config:
     import: optional:configserver:http://127.0.0.1:8082
   cloud:

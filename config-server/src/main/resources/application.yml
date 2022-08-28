@@ -7,6 +7,13 @@ eureka:
     service-url:
       defaultZone: http://127.0.0.1:8761/eureka
 
+logging:
+  level:
+    com:
+      netflix:
+        eureka: OFF
+        discovery: OFF
+
 spring:
   application:
     name: configServer
