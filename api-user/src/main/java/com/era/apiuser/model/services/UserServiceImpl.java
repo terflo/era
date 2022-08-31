@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User addUser(UserRegistrationRequest registrationRequest) throws UserAlreadyExistsException {
-        return User
+        return this.userRepository.save(User
                 .builder()
                 .UUID(UUID.randomUUID().toString())
                 .username(registrationRequest.getUsername())
@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 .locked(false)
                 .credentials_expired(false)
                 .enabled(true)
-                .build();
+                .build());
     }
 
     @Override
@@ -46,32 +46,46 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public User getUserByUUID(String uuid) throws UserNotFoundException {
-        return null;
+        return this.userRepository
+                .getUserByUUID(uuid)
+                .orElseThrow(() -> {
+                    throw new UserNotFoundException(String.format("Пользователь с UUID %s не найден", uuid));
+                });
     }
 
     @Override
     public User getUserByUsername(String username) throws UserNotFoundException {
-        return null;
+        return this.userRepository
+                .getUserByUsername(username)
+                .orElseThrow(() -> {
+                    throw new UserNotFoundException(String.format("Пользователь с именем %s не найден", username));
+                });
     }
 
     @Override
     public void updateUser(User user) throws UserNotFoundException, UserAlreadyExistsException {
-
+        //TODO: Написать метод
     }
 
     @Override
     public void deleteUser(User user) throws UserNotFoundException {
-
+        if(this.userRepository.existsUserByUUID(user.getUUID()))
+            throw new UserNotFoundException(String.format("Пользователь с UUID %s не найден", user.getUUID()));
+        this.userRepository.delete(user);
     }
 
     @Override
     public void deleteUserByUUID(String uuid) throws UserNotFoundException {
-
+        if(this.userRepository.existsUserByUUID(uuid))
+            throw new UserNotFoundException(String.format("Пользователь с UUID %s не найден", uuid));
+        this.userRepository.deleteUserByUUID(uuid);
     }
 
     @Override
     public void deleteUserByUsername(String username) throws UserNotFoundException {
-
+        if(this.userRepository.existsUserByUsername(username))
+            throw new UserNotFoundException(String.format("Пользователь с именем %s не найден", username));
+        this.userRepository.deleteUserByUsername(username);
     }
 
     @Override

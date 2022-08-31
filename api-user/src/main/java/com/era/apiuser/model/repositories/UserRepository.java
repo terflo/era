@@ -13,6 +13,12 @@ public interface UserRepository extends JpaRepository<User, String> {
 
     Optional<User> getUserByUsername(String username);
 
+    Optional<User> getUserByUUID(String uuid);
+
+    void deleteUserByUsername(String username);
+
+    void deleteUserByUUID(String uuid);
+
     boolean existsUserByEmail(String email);
 
     boolean existsUserByUsername(String username);
