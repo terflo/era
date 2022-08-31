@@ -9,8 +9,8 @@ import org.springframework.test.context.ActiveProfiles;
 class ApiUserApplicationTests {
 
     @Test
-    void contextLoads() {
-        System.out.println("test");
+    void emailTest() {
+
     }
 
 }

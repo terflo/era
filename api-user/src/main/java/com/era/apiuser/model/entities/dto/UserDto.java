@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @Builder(toBuilder = true)
-public class UserDTO {
+public class UserDto {
 
     private String UUID;
 
