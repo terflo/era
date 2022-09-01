@@ -20,7 +20,7 @@ public class WebClientConfig {
     private String GATEWAY_URL;
 
     @Value("${spring.webclient.gateway.timeout}")
-    private int TIMEOUT = 1000;
+    private int TIMEOUT;
 
     @Bean
     public WebClient webClientWithTimout() {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/topic")
+@RequestMapping("/api/topic")
 public class TopicController {
 
     private final TopicService topicService;

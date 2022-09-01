@@ -11,4 +11,3 @@ spring:
         max-attempts: 1000
         max-interval: 2000
         multiplier: 1.1
-
