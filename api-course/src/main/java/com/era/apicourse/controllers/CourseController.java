@@ -8,8 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/course")
@@ -18,7 +16,6 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping
-    @RolesAllowed({"Moderator"})
     public ResponseEntity<?> getAll(
             @RequestParam(required = false) String uuid,
             @RequestParam(required = false) String name) {

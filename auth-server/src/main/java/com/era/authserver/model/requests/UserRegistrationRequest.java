@@ -2,6 +2,7 @@ package com.era.authserver.model.requests;
 
 import com.era.authserver.model.validators.Email;
 import com.era.authserver.model.validators.UsernameExists;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;
@@ -9,6 +10,7 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
+@AllArgsConstructor
 public class UserRegistrationRequest {
 
     @UsernameExists

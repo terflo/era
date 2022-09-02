@@ -11,7 +11,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.nio.CharBuffer;
 import java.util.Collections;
 
 @Component
@@ -31,7 +30,7 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 
             User user = userService.getUserByUsername(username);
 
-            if(passwordEncoder.matches(CharBuffer.wrap(password), user.getPassword())) {
+            if(passwordEncoder.matches(password, user.getPassword())) {
                 return UsernamePasswordAuthenticationToken.authenticated(username, password, Collections.emptyList());
             }
 

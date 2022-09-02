@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="EntryPointsManager">
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="org.mapstruct.Mapper" />
+    </list>
+  </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -12,7 +17,6 @@
         <option value="$PROJECT_DIR$/eurika-server/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/gateway-server/pom.xml" />
-        <option value="$PROJECT_DIR$/api-user/pom.xml" />
         <option value="$PROJECT_DIR$/admin-server/pom.xml" />
         <option value="$PROJECT_DIR$/auth-server/pom.xml" />
       </list>

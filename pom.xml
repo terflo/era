@@ -21,7 +21,6 @@
 
     <modules>
         <module>api-course</module>
-        <module>api-user</module>
         <module>config-server</module>
         <module>eureka-server</module>
         <module>gateway-server</module>
