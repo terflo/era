@@ -1,23 +1,21 @@
 package com.era.authserver.config;
 
-import com.era.authserver.model.entities.User;
-import com.era.authserver.model.exceptions.UserNotFoundException;
-import com.era.authserver.model.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
-
 @Component
 @RequiredArgsConstructor
-public class UserAuthenticationProvider implements AuthenticationProvider {
+public class CustomAuthenticationProvider implements AuthenticationProvider {
 
-    private final UserService userService;
+    private final UserDetailsService userService;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -26,18 +24,12 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
 
-        try {
+        UserDetails user = userService.loadUserByUsername(username);
 
-            User user = userService.getUserByUsername(username);
+        if(passwordEncoder.matches(password, user.getPassword())) {
+            return UsernamePasswordAuthenticationToken.authenticated(username, password, user.getAuthorities());
+        } else throw new BadCredentialsException("Неверные учетные данные");
 
-            if(passwordEncoder.matches(password, user.getPassword())) {
-                return UsernamePasswordAuthenticationToken.authenticated(username, password, Collections.emptyList());
-            }
-
-        } catch (UserNotFoundException e) {
-            return null;
-        }
-        return null;
     }
 
     @Override

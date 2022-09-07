@@ -6,6 +6,7 @@ import com.era.apicourse.model.services.interfaces.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +19,10 @@ public class CourseController {
     @GetMapping
     public ResponseEntity<?> getAll(
             @RequestParam(required = false) String uuid,
-            @RequestParam(required = false) String name) {
+            @RequestParam(required = false) String name,
+            JwtAuthenticationToken request) {
+
+        System.out.println(request.getToken().getClaims().values());
 
         if(StringUtils.isBlank(uuid) && StringUtils.isBlank(name))
             return ResponseEntity.ok(courseService.getAll());
@@ -30,7 +34,7 @@ public class CourseController {
     }
 
     @PostMapping
-    public ResponseEntity<Course> addCourse(@RequestBody NewCourseRequest newCourseRequest) {
+    public ResponseEntity<?> addCourse(@RequestBody NewCourseRequest newCourseRequest) {
         return ResponseEntity.ok(courseService.addNewCourse(newCourseRequest));
     }
 
@@ -38,5 +42,10 @@ public class CourseController {
     public ResponseEntity<?> deleteCourse(@RequestParam String uuid) {
         this.courseService.deleteCourseByUuid(uuid);
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<?> updateCourse(@RequestBody Course course) {
+        return ResponseEntity.ok(this.courseService.updateCourse(course));
     }
 }

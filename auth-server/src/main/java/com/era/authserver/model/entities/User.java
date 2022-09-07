@@ -1,5 +1,6 @@
 package com.era.authserver.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,9 +15,9 @@ import java.util.stream.Collectors;
 @Setter
 @Entity
 @ToString
+@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "users")
 @Builder(toBuilder = true)
 public class User implements UserDetails {
 
@@ -38,15 +39,20 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
     private boolean expired;
+
     private boolean locked;
+
     private boolean credentials_expired;
+
     private boolean enabled;
 
     public void switchLock() {
         this.locked = !this.locked;
     }
 
+    @JsonIgnore
     public Set<String> getRoleNames() {
         return this.roles
                 .stream()
@@ -55,6 +61,7 @@ public class User implements UserDetails {
     }
 
     @Override
+    @JsonIgnore
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles;
     }

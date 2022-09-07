@@ -47,5 +47,6 @@ public class WebSecurityConfig {
                 .rememberMe((rememberMe) -> rememberMe.key(UUID.randomUUID().toString()).tokenValiditySeconds(1209600));
         return http.build();
     }
-    }
+
+}
 

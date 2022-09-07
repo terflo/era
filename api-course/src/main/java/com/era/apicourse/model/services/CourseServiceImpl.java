@@ -9,6 +9,7 @@ import com.era.apicourse.model.services.interfaces.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -20,8 +21,15 @@ public class CourseServiceImpl implements CourseService {
     private final CourseRepository courseRepository;
 
     @Override
-    public Course addNewCourse(NewCourseRequest newCourseRequest) throws CourseNotFoundException {
-        return courseRepository.save(Course
+    @Transactional
+    public Course addNewCourse(NewCourseRequest newCourseRequest) throws CourseAlreadyExistsException {
+
+        if(this.courseRepository.existsByName(newCourseRequest.getName()))
+            throw new CourseAlreadyExistsException(
+                    String.format("Курс с именем %s уже существует", newCourseRequest.getName())
+            );
+
+        return this.courseRepository.save(Course
                 .builder()
                 .uuid(UUID.randomUUID().toString())
                 .name(newCourseRequest.getName())
@@ -34,42 +42,58 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
+    @Transactional
     public Course addCourse(Course course) throws CourseAlreadyExistsException {
 
         if (this.courseRepository.existsByUuid(course.getUuid()))
-            throw new CourseAlreadyExistsException("Курс с таким UUID уже существует");
+            throw new CourseAlreadyExistsException(
+                    String.format("Курс с UUID %s уже существует", course.getUuid())
+            );
         else if (this.courseRepository.existsByName(course.getName()))
-            throw new CourseAlreadyExistsException("Курс с таким именем уже существует");
-
+            throw new CourseAlreadyExistsException(
+                    String.format("Курс с именем %s уже существует", course.getName())
+            );
         return courseRepository.save(course);
     }
 
     @Override
-    public Course updateCourse(Course course) {
+    @Transactional
+    public Course updateCourse(Course course) throws CourseNotFoundException, CourseAlreadyExistsException {
 
-        if (!this.courseRepository.existsByUuid(course.getUuid()))
-            throw new CourseNotFoundException("Курс с таким UUID не существует");
-        else if (this.courseRepository.existsByName(course.getName()))
-            throw new CourseAlreadyExistsException("Курс с таким именем уже существует");
+        Course oldCourse = courseRepository
+                .getCourseByUuid(course.getUuid())
+                .orElseThrow(() -> {
+                    throw new CourseNotFoundException(
+                            String.format("Курс с UUID %s не существует", course.getUuid())
+                    );
+                });
 
-        return courseRepository.save(course);
+        if(oldCourse.getName().equals(course.getName())) {
+            throw new CourseAlreadyExistsException(
+                    String.format("Курс с именем %s уже существует", course.getName())
+            );
+        }
+        return this.courseRepository.save(course);
     }
 
     @Override
+    @Transactional
     public void deleteCourse(Course course) {
 
         if (!this.courseRepository.existsByUuid(course.getUuid()))
-            throw new CourseNotFoundException("Курс с таким UUID не существует");
-
+            throw new CourseNotFoundException(
+                    String.format("Курс с UUID %s не существует", course.getUuid())
+            );
         this.courseRepository.delete(course);
-
     }
 
     @Override
+    @Transactional
     public void deleteCourseByUuid(String uuid) {
         if (!this.courseRepository.existsByUuid(uuid))
-            throw new CourseNotFoundException("Курс с таким UUID не существует");
-
+            throw new CourseNotFoundException(
+                    String.format("Курс с UUID %s не существует", uuid)
+            );
         this.courseRepository.deleteById(uuid);
     }
 
@@ -78,7 +102,7 @@ public class CourseServiceImpl implements CourseService {
         return this.courseRepository
                 .getCourseByUuid(uuid)
                 .orElseThrow(() -> new CourseNotFoundException(
-                        String.format("Курса с UUID: %s не существует", uuid)
+                        String.format("Курс с UUID: %s не существует", uuid)
                 ));
     }
 
@@ -100,6 +124,7 @@ public class CourseServiceImpl implements CourseService {
                 ));
     }
 
+    //TODO: Поменять вывод на Pagination
     @Override
     public List<Course> getAll() {
         return this.courseRepository.findAll();

@@ -9,8 +9,10 @@ import com.era.authserver.model.services.interfaces.RoleService;
 import com.era.authserver.model.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.oidc.OidcUserInfo;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
@@ -20,7 +22,7 @@ import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     private final UserRepository userRepository;
 
@@ -37,7 +39,7 @@ public class UserServiceImpl implements UserService {
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
                 .email(registrationRequest.getEmail())
                 .timestamp(new Date())
-                .roles(Collections.singleton(this.roleService.getRoleByName("user")))
+                .roles(Collections.singleton(this.roleService.getRoleByName("ROLE_USER")))
                 .expired(false)
                 .locked(false)
                 .credentials_expired(false)
