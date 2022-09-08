@@ -1,14 +1,12 @@
-package com.era.utils;
+package com.era.utils.security;
 
 import org.springframework.security.access.PermissionEvaluator;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Component
 public class CustomJwtPermissionEvaluator implements PermissionEvaluator {
 
     @Override

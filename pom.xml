@@ -21,11 +21,12 @@
 
     <modules>
         <module>api-course</module>
+        <module>auth-server</module>
         <module>config-server</module>
         <module>eureka-server</module>
         <module>gateway-server</module>
         <module>admin-server</module>
-        <module>security-utils</module>
+        <module>era-utils</module>
     </modules>
 
     <properties>
