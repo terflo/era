@@ -6,6 +6,8 @@ import com.era.apicourse.model.services.interfaces.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,12 +19,11 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping
+    @PreAuthorize("hasPermission(#jwt, 'ROLE_USER')")
     public ResponseEntity<?> getAll(
             @RequestParam(required = false) String uuid,
             @RequestParam(required = false) String name,
-            JwtAuthenticationToken request) {
-
-        System.out.println(request.getToken().getClaims().values());
+            JwtAuthenticationToken jwt) {
 
         if(StringUtils.isBlank(uuid) && StringUtils.isBlank(name))
             return ResponseEntity.ok(courseService.getAll());

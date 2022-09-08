@@ -25,6 +25,7 @@
         <module>eureka-server</module>
         <module>gateway-server</module>
         <module>admin-server</module>
+        <module>security-utils</module>
     </modules>
 
     <properties>

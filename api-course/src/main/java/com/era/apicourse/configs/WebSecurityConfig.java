@@ -1,14 +1,13 @@
 package com.era.apicourse.configs;
 
-import com.nimbusds.jose.proc.SecurityContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler;
+import org.springframework.security.access.expression.method.MethodSecurityExpressionHandler;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
+import com.era.utils.CustomJwtPermissionEvaluator;
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -29,5 +28,13 @@ public class WebSecurityConfig {
                 .jwt();
 
         return http.build();
+    }
+
+    @Bean
+    public MethodSecurityExpressionHandler createExpressionHandler() {
+        DefaultMethodSecurityExpressionHandler expressionHandler =
+                new DefaultMethodSecurityExpressionHandler();
+        expressionHandler.setPermissionEvaluator(new CustomJwtPermissionEvaluator());
+        return expressionHandler;
     }
 }

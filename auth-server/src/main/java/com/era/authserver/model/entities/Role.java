@@ -1,6 +1,5 @@
 package com.era.authserver.model.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -31,7 +30,7 @@ public class Role implements GrantedAuthority {
     @Transient
     @ManyToMany(mappedBy = "roles")
     @ToString.Exclude
-    @JsonBackReference
+    @JsonIgnore
     private Set<User> users;
 
     @Override

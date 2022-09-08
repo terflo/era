@@ -10,6 +10,7 @@
         <module name="config-server" />
         <module name="gateway-server" />
         <module name="admin-server" />
+        <module name="security-utils" />
         <module name="api-course" />
         <module name="eureka-server" />
       </profile>
@@ -38,6 +39,7 @@
       <module name="config-server" options="-parameters" />
       <module name="eureka-server" options="-parameters" />
       <module name="gateway-server" options="-parameters" />
+      <module name="security-utils" options="-parameters" />
     </option>
   </component>
 </project>
