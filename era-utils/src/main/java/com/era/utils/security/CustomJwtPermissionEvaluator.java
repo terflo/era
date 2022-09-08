@@ -7,6 +7,14 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * @author Danil Krivoschiokov
+ * @version 1.0
+ * @see PermissionEvaluator
+ * @see JwtAuthenticationToken
+ * @see org.springframework.security.access.prepost.PreAuthorize
+ * Данный класс реализует получение списка ролей из кастомных claims в JwtAuthenticationToken и сравнивает с указанными в аннотации @PreAuthorize
+ */
 public class CustomJwtPermissionEvaluator implements PermissionEvaluator {
 
     @Override
