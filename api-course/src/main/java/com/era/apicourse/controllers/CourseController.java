@@ -19,7 +19,7 @@ public class CourseController {
     private final CourseService courseService;
 
     @GetMapping
-    @PreAuthorize("hasPermission(#jwt, 'ROLE_USER')")
+    @PreAuthorize("jwtRoleAllowed('ROLE_USER')")
     public ResponseEntity<?> getAll(
             @RequestParam(required = false) String uuid,
             @RequestParam(required = false) String name,

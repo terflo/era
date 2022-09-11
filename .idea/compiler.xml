@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
+        <module name="api-course" />
+        <module name="api-user" />
         <module name="gateway-server" />
         <module name="admin-server" />
         <module name="era-utils" />
-        <module name="api-course" />
         <module name="eureka-server" />
       </profile>
       <profile name="Annotation profile for era" enabled="true">
@@ -26,9 +27,6 @@
         <module name="auth-server" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="api-user" target="17" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

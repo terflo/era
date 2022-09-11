@@ -31,7 +31,6 @@ public class AuthorizationServerConfiguration {
                 .exceptionHandling(exceptions -> exceptions.authenticationEntryPoint(
                         new LoginUrlAuthenticationEntryPoint("/login")
                 ));
-
         return http.build();
     }
 
@@ -44,6 +43,13 @@ public class AuthorizationServerConfiguration {
     public ProviderSettings providerSettings() {
         return ProviderSettings.builder()
                 .issuer("http://auth-server:8085")
+                .authorizationEndpoint("/oauth2/authorize")
+                .tokenEndpoint("/oauth2/token")
+                .tokenIntrospectionEndpoint("/oauth2/introspect")
+                .tokenRevocationEndpoint("/oauth2/revoke")
+                .jwkSetEndpoint("/oauth2/jwks")
+                .oidcUserInfoEndpoint("/userinfo")
+                .oidcClientRegistrationEndpoint("/connect/register")
                 .build();
     }
 }

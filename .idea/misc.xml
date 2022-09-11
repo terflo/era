@@ -20,6 +20,7 @@
         <option value="$PROJECT_DIR$/admin-server/pom.xml" />
         <option value="$PROJECT_DIR$/auth-server/pom.xml" />
         <option value="$PROJECT_DIR$/era-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/api-user/pom.xml" />
       </list>
     </option>
   </component>

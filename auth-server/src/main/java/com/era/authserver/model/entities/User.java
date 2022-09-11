@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
@@ -13,31 +12,22 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@Entity
 @ToString
-@Table(name = "users")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder(toBuilder = true)
 public class User implements UserDetails {
 
-    @Id
-    @Column(nullable = false, unique = true)
     private String UUID;
 
-    @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, length = 100)
     private String password;
 
-    @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false)
     private Date timestamp;
 
-    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
     private boolean expired;
