@@ -2,6 +2,7 @@ package com.era.authserver.model.services;
 
 import com.era.authserver.model.entities.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +31,9 @@ public class UserServiceImpl implements UserDetailsService {
                 .retrieve()
                 .toEntity(User.class)
                 .block();
+
+        if(!Objects.requireNonNull(response).getStatusCode().equals(HttpStatus.OK))
+            throw new UsernameNotFoundException("Не удалось получить пользователя, код ошибки: " + response.getStatusCode());
 
         return response.getBody();
     }
