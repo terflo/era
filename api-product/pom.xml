@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>api-products</artifactId>
+    <artifactId>api-product</artifactId>
     <version>${project.parent.version}</version>
     <name>api-course</name>
     <description>api-course</description>

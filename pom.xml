@@ -20,7 +20,7 @@
     </parent>
 
     <modules>
-        <module>api-course</module>
+        <module>api-product</module>
         <module>api-user</module>
         <module>auth-server</module>
         <module>config-server</module>
