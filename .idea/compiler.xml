@@ -8,8 +8,8 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="config-server" />
-        <module name="api-course" />
         <module name="api-user" />
+        <module name="api-products" />
         <module name="gateway-server" />
         <module name="admin-server" />
         <module name="era-utils" />
@@ -27,11 +27,15 @@
         <module name="auth-server" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-course" target="17" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="admin-server" options="-parameters" />
       <module name="api-course" options="-parameters" />
+      <module name="api-products" options="-parameters" />
       <module name="api-user" options="-parameters" />
       <module name="auth-server" options="-parameters" />
       <module name="config-server" options="-parameters" />

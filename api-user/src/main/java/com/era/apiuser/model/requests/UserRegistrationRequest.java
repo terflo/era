@@ -17,7 +17,7 @@ public class UserRegistrationRequest {
     @NotBlank(message = "Имя пользователя не может быть пустым")
     @Pattern(regexp = "/^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$/",
             flags = Pattern.Flag.UNICODE_CASE,
-            message = "Не корректное имя пользователя")
+            message = "Некорректное имя пользователя")
     private String username;
 
     @NotBlank(message = "Электронная почта не может быть пустой")

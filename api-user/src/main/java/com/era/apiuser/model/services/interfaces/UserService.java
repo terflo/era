@@ -4,6 +4,8 @@ import com.era.apiuser.model.entities.User;
 import com.era.apiuser.model.exceptions.UserAlreadyExistsException;
 import com.era.apiuser.model.exceptions.UserNotFoundException;
 import com.era.apiuser.model.requests.UserRegistrationRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
@@ -13,6 +15,8 @@ public interface UserService extends UserDetailsService {
     User addUser(UserRegistrationRequest registrationRequest) throws UserAlreadyExistsException;
 
     List<User> getAll();
+
+    Page<User> getUserByParams(String uuid, String username, String email, Pageable pageable);
 
     User getUserByUUID(String uuid) throws UserNotFoundException;
 

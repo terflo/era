@@ -8,8 +8,9 @@ import com.era.apiuser.model.requests.UserRegistrationRequest;
 import com.era.apiuser.model.services.interfaces.RoleService;
 import com.era.apiuser.model.services.interfaces.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -31,14 +32,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(UserRegistrationRequest registrationRequest) throws UserAlreadyExistsException {
-        return this.userRepository.save(User
+        return userRepository.save(User
                 .builder()
                 .UUID(UUID.randomUUID().toString())
                 .username(registrationRequest.getUsername())
                 .password(passwordEncoder.encode(registrationRequest.getPassword()))
                 .email(registrationRequest.getEmail())
                 .timestamp(new Date())
-                .roles(Collections.singleton(this.roleService.getRoleByName("ROLE_USER")))
+                .roles(Collections.singleton(roleService.getRoleByName("ROLE_USER")))
                 .expired(false)
                 .locked(false)
                 .credentials_expired(false)
@@ -48,12 +49,17 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAll() {
-        return this.userRepository.findAll();
+        return userRepository.findAll();
+    }
+
+    @Override
+    public Page<User> getUserByParams(String uuid, String username, String email, Pageable page) {
+        return userRepository.getUserByUUIDOrUsernameOrEmail(uuid, username, email, page);
     }
 
     @Override
     public User getUserByUUID(String uuid) throws UserNotFoundException {
-        return this.userRepository
+        return userRepository
                 .getUserByUUID(uuid)
                 .orElseThrow(() -> {
                     throw new UserNotFoundException(String.format("Пользователь с UUID %s не найден", uuid));
@@ -62,7 +68,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUsername(String username) throws UserNotFoundException {
-        return this.userRepository
+        return userRepository
                 .getUserByUsername(username)
                 .orElseThrow(() -> {
                     throw new UserNotFoundException(String.format("Пользователь с именем %s не найден", username));
@@ -76,43 +82,43 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(User user) throws UserNotFoundException {
-        if(this.userRepository.existsUserByUUID(user.getUUID()))
+        if(userRepository.existsUserByUUID(user.getUUID()))
             throw new UserNotFoundException(String.format("Пользователь с UUID %s не найден", user.getUUID()));
-        this.userRepository.delete(user);
+        userRepository.delete(user);
     }
 
     @Override
     public void deleteUserByUUID(String uuid) throws UserNotFoundException {
-        if(this.userRepository.existsUserByUUID(uuid))
+        if(userRepository.existsUserByUUID(uuid))
             throw new UserNotFoundException(String.format("Пользователь с UUID %s не найден", uuid));
-        this.userRepository.deleteUserByUUID(uuid);
+        userRepository.deleteUserByUUID(uuid);
     }
 
     @Override
     public void deleteUserByUsername(String username) throws UserNotFoundException {
-        if(this.userRepository.existsUserByUsername(username))
+        if(userRepository.existsUserByUsername(username))
             throw new UserNotFoundException(String.format("Пользователь с именем %s не найден", username));
-        this.userRepository.deleteUserByUsername(username);
+        userRepository.deleteUserByUsername(username);
     }
 
     @Override
     public boolean userExistsByUUID(String uuid) {
-        return this.userRepository.existsUserByUUID(uuid);
+        return userRepository.existsUserByUUID(uuid);
     }
 
     @Override
     public boolean userExistsByUsername(String username) {
-        return this.userRepository.existsUserByUsername(username);
+        return userRepository.existsUserByUsername(username);
     }
 
     @Override
     public boolean userExistsByEmail(String email) {
-        return this.userRepository.existsUserByEmail(email);
+        return userRepository.existsUserByEmail(email);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return this.userRepository
+        return userRepository
                 .getUserByUsername(username)
                 .orElseThrow(() -> {
                     throw new UsernameNotFoundException(
