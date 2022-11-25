@@ -20,6 +20,7 @@
     </parent>
 
     <modules>
+        <module>api-order</module>
         <module>api-product</module>
         <module>api-user</module>
         <module>auth-server</module>

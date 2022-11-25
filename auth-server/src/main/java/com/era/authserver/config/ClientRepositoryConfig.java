@@ -41,10 +41,12 @@ public class ClientRepositoryConfig {
                         .redirectUri("http://gateway-server:8083/login/oauth2/code/gateway")
                         .redirectUri("http://gateway-server:8083/authorized")
                         .scope(OidcScopes.OPENID)
-                        .scope("course.read")
-                        .scope("course.write")
+                        .scope("product.read")
+                        .scope("product.write")
                         .scope("user.read")
                         .scope("user.write")
+                        .scope("order.read")
+                        .scope("order.write")
                         .build()
 
         );

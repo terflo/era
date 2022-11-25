@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="api-order" />
         <module name="config-server" />
         <module name="api-product" />
         <module name="api-user" />
@@ -35,6 +36,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="admin-server" options="-parameters" />
       <module name="api-course" options="-parameters" />
+      <module name="api-order" options="-parameters" />
       <module name="api-product" options="-parameters" />
       <module name="api-user" options="-parameters" />
       <module name="auth-server" options="-parameters" />

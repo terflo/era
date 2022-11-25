@@ -1,4 +1,4 @@
-package com.era.apiproducts.configs;
+package com.era.apiorder.configs;
 
 import com.era.utils.security.JwtMethodSecurityExpressionHandler;
 import org.springframework.context.annotation.Bean;
@@ -21,7 +21,7 @@ public class WebSecurityConfig {
                 .mvcMatchers("/actuator/**")
                 .permitAll()
                 .mvcMatchers("/api/**")
-                .access("hasAuthority('SCOPE_product.read')")
+                .access("hasAuthority('SCOPE_order.read')")
                 .and()
                 .oauth2ResourceServer()
                 .jwt();

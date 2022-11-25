@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserDetailsService {
         ResponseEntity<User> response = webClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                        .path("/api/user/" + username)
+                        .path("/api/users/" + username)
                         .build())
                 .attributes(ServerOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId("auth"))
                 .retrieve()
