@@ -17,6 +17,7 @@ public class Material {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false, unique = true)
     private Long id;
 
     @Column(name = "name")

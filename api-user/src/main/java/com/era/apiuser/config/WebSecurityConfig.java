@@ -31,8 +31,7 @@ public class WebSecurityConfig {
 
     @Bean
     public MethodSecurityExpressionHandler createExpressionHandler() {
-        JwtMethodSecurityExpressionHandler expressionHandler = new JwtMethodSecurityExpressionHandler();
         //expressionHandler.setPermissionEvaluator(new CustomPermissionEvaluator());
-        return expressionHandler;
+        return new JwtMethodSecurityExpressionHandler();
     }
 }

@@ -1,6 +1,5 @@
 package com.era.authserver.config;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,14 +7,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SpringSecurityConfiguration {
 
     @Bean
     SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception {
         http
-
-                .authorizeRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
+                .authorizeRequests(authorizeRequests -> authorizeRequests
+                        .mvcMatchers("/actuator/**")
+                        .permitAll()
+                        .anyRequest()
+                        .authenticated())
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
