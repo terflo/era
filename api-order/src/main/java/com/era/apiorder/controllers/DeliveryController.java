@@ -8,6 +8,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/deliveries")
@@ -26,17 +28,17 @@ public class DeliveryController {
     }
 
     @PostMapping
-    public Delivery save(Delivery delivery) {
+    public Delivery save(@Valid Delivery delivery) {
         return deliveryService.save(delivery);
     }
 
     @PutMapping
-    public Delivery update(Delivery delivery) {
+    public Delivery update(@Valid Delivery delivery) {
         return deliveryService.update(delivery);
     }
 
     @DeleteMapping
-    public ResponseEntity<?> delete(Delivery delivery) {
+    public ResponseEntity<?> delete(@Valid Delivery delivery) {
         deliveryService.delete(delivery);
         return ResponseEntity.ok().build();
     }

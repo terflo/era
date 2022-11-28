@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 
 /**
  * Класс для хранения информации о товаре в заказе, только нужной информации для этого сервиса
@@ -32,6 +33,7 @@ public class OrdersProduct {
     /**
      * Кол-во товара
      */
+    @Min(value = 0, message = "Количество товара не может быть меньше 0")
     @Column(name = "count", nullable = false)
     private Long count;
 
