@@ -1,6 +1,7 @@
 package com.era.apiorder.model.entities;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,7 +15,8 @@ import javax.validation.constraints.Min;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "ordersProduct")
+@Builder(toBuilder = true)
+@Table(name = "orders_product")
 public class OrdersProduct {
 
     /**
@@ -27,7 +29,7 @@ public class OrdersProduct {
     /**
      * Уникальный индификатор товара из сервиса ApiProduct
      */
-    @Column(name = "productId", nullable = false)
+    @Column(name = "product_id", nullable = false)
     private Long productId;
 
     /**

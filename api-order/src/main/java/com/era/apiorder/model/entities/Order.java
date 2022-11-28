@@ -13,9 +13,9 @@ import java.util.List;
 
 @Data
 @Entity
-@Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder(toBuilder = true)
 @Table(name = "orders")
 public class Order {
 
@@ -27,25 +27,25 @@ public class Order {
     private Long id;
 
     @Pattern(regexp = "\\\\d{10}|(?:\\\\d{3}-){2}\\\\d{4}|\\\\(\\\\d{3}\\\\)\\\\d{3}-?\\\\d{4}")
-    @Column(name = "telNumber", nullable = false)
+    @Column(name = "tel_number", nullable = false)
     private String telNumber;
 
     /**
      * Тип доставки
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private Delivery delivery;
 
     /**
      * Тип оплаты
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private PayType payType;
 
     /**
      * Товары указанные в заказе
      */
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<OrdersProduct> ordersProducts;
 
     /**

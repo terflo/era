@@ -53,4 +53,7 @@ public class Product {
     @OneToMany(fetch = FetchType.EAGER)
     private List<Material> materials;
 
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Image> images;
+
 }
