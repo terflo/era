@@ -5,6 +5,8 @@ import com.era.apiproducts.model.services.interfaces.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public Page<Product> getAll(Pageable pageable) {
+    public Page<Product> getAll(@PageableDefault(size = 20, direction = Sort.Direction.DESC, sort = "availableCount") Pageable pageable) {
         return productService.getAll(pageable);
     }
 
@@ -26,12 +28,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product save(Product product) {
+    public Product save(@RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
     @PutMapping
-    public Product update(Product product) {
+    public Product update(@RequestBody Product product) {
         return productService.updateProduct(product);
     }
 

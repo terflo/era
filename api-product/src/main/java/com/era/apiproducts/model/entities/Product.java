@@ -47,13 +47,13 @@ public class Product {
     @Column(name = "depth", nullable = false)
     private Integer depth;
 
+    @Column(name="image_url")
+    private String imageUrl;
+
     @ManyToOne(fetch = FetchType.EAGER)
     private Category category;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<Material> materials;
-
-    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Image> images;
 
 }

@@ -5,6 +5,8 @@ import com.era.apiproducts.model.services.interfaces.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public Page<Category> getAllCategory(Pageable pageable) {
+    public Page<Category> getAllCategory(@PageableDefault(size = 20, direction = Sort.Direction.DESC, sort = "name") Pageable pageable) {
         return categoryService.getAll(pageable);
     }
 
@@ -26,12 +28,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Category saveCategory(Category category) {
+    public Category saveCategory(@RequestBody Category category) {
         return categoryService.saveCategory(category);
     }
 
     @PutMapping
-    public Category updateCategory(Category category) {
+    public Category updateCategory(@RequestBody Category category) {
         return categoryService.updateCategory(category);
     }
 
